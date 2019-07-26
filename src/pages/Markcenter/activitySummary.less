@@ -1,0 +1,26 @@
+.txt (@color: black, @fontWeight: 500, @fontSize: 20px) {
+    color: @color;
+    font-weight: @fontWeight;
+    font-size:  @fontSize;
+}
+.title {
+    .txt
+}
+
+.promptLess {
+    .txt(black,400,10px);
+    background: rgb(214, 233, 176);
+    width: 600px;
+    height: 20px;
+    line-height: 20px;
+    margin-left: 20px
+}
+.pagination{
+    padding-top: 40px;
+    display: flex;
+    justify-content: flex-end;
+}
+.thumImg{
+    width: 40px;
+    height: 40px;
+}

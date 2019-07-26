@@ -1,0 +1,428 @@
+.remindModal {
+  margin-top: 20px;
+  width: 100%;
+  padding: 18px 20px 10px;
+  border: 1px solid #b7eb8f;
+  border-radius: 5px;
+  background: #f6ffed;
+  & > span {
+    line-height: 20px;
+    display: inline-block;
+    height: 20px;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    font-size: 16px;
+  }
+  & > div {
+    line-height: 25px;
+    height: 25px;
+    padding-left: 30px;
+    color: #999;
+  }
+}
+.stepForm {
+  max-width: 500px;
+  margin: 40px auto 0;
+  margin-left: 0px;
+  & > div {
+    height: 40px;
+  }
+}
+.tab {
+  position: relative;
+  margin: 20px 0 0;
+  button {
+    position: absolute;
+    right: 20px;
+  }
+  & > span {
+    line-height: 40px;
+    color: #1890ff;
+    width: 100px;
+    height: 40px;
+    padding: 7px 10px;
+    font-size: 16px;
+    border-bottom: 2px solid #1890ff;
+  }
+}
+.content {
+  padding: 0 0 20px;
+  & > p {
+    text-align: center;
+    border: 1px dashed #ddd;
+    border-radius: 5px;
+    height: 30px;
+    line-height: 30px;
+  }
+  .goodsdetailwrapper {
+    background: rgb(242, 242, 242);
+  }
+  .goodsItems{
+    border-bottom: 1px solid #ddd;
+
+  }
+  .goodsdetail,
+  .goodsdetailwrapper {
+    padding: 10px 15px;
+    display: flex;
+    .wrapper {
+      position: absolute;
+      width: 1513px;
+      height: 189px;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+    .left {
+      width: 360px;
+      img {
+        width: 60px;
+        height: 60px;
+        display: block;
+        border: 1px dashed #ddd;
+        float: left;
+      }
+      & > div:first-child {
+        height: 60px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: flex-start;
+
+        & > div {
+          width: 260px;
+          margin-left: 20px;
+        }
+      }
+      & > div:last-child {
+        width: 100%;
+        & > div {
+          float: left;
+
+          width: 25%;
+          p,
+          b {
+            text-align: left;
+            margin-bottom: 6px;
+          }
+        }
+      }
+    }
+    .center {
+      width: 920px;
+      // margin-left:40px;
+      display: flex;
+      justify-content: flex-start;
+      flex: 1;
+      .uploadbox {
+        display: block;
+        width: 130px;
+        height: 130px;
+        border: 1px dashed #ddd;
+        & > img {
+          display: block;
+          width: 130px;
+          height: 130px;
+          margin-right: 20px;
+          // border:1px dashed #ddd;
+        }
+        & > img.overbiao {
+          position: absolute;
+          width: 80px;
+          height: 20px;
+          top: 0;
+          left: 0;
+        }
+      }
+      & > div:nth-child(2) {
+        flex: 1;
+      }
+      .activityMessage {
+        margin-left: 14px;
+        & > div {
+          margin: 0;
+          // &>div:nth-child(2){
+          //   width:80%;
+          //   float:left;
+          //   margin-right:1%;
+          //   p{margin:0;}
+          //   &>span{
+          //     margin-top:10px;
+          //     display:block;
+          //     font-weight:bold;
+          //   }
+          // }
+          // &>div:nth-child(4){
+          //  margin-left:3%;
+          // }
+        }
+      }
+      .activityMessageBottom {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-left: 32px;
+        :global {
+          .ant-form-item {
+            margin-bottom: 0px;
+          }
+        }
+        & > div:nth-child(1) {
+          width: 260px;
+        }
+        & > div:nth-child(2) {
+          flex: 1;
+          margin-left: 20px;
+        }
+        & > div {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          & > div {
+            width: 80px;
+            margin-right: 10px;
+          }
+          // span{
+          //   &>div{
+
+          //   }
+          // }
+        }
+      }
+    }
+    .right {
+      width: 95px;
+      margin-left: 20px;
+      :global {
+        .ant-form-item {
+          margin-bottom: 0px;
+        }
+        input{
+          width: 66px;
+          height: 30px;
+        }
+      }
+      & > div {
+        label {
+          color: #1890ff;
+        }
+        color: #1890ff;
+      }
+      & > a {
+        display: block;
+        color: #1890ff;
+      }
+    }
+  }
+}
+.clearfix:after {
+  clear: both;
+  content: '';
+  display: block;
+}
+.sendType {
+  margin-left: 20px;
+  display: inline-block;
+}
+.iconUpload {
+  height: 100px;
+  display: inline-block;
+  position: absolute;
+  top: 83px;
+  img {
+    vertical-align: top;
+  }
+}
+// :global{
+//   .antd-pro-pages-mark-center-step-form-style-stepForm {
+//     div{height:80px;}
+//   }
+// }
+.fixedBottom {
+  // padding-left:200px;
+  background: #f0f2f5;
+  height: 80px !important;
+  position: fixed;
+  bottom: 0;
+  left: 256px;
+  width: 1647px;
+  & > div {
+    padding-left: 100px;
+    text-align: left;
+    height: 80px;
+    line-height: 80px;
+    line-height: 80px;
+    width: 100%;
+    margin: 0 auto;
+    background: #fff;
+    :global {
+      .ant-form-item-control-wrapper {
+        height: 80px;
+      }
+      .ant-form-item-control {
+        height: 80px;
+        line-height: 80px;
+        // .ant-btn-primary{margin-left:100px;}
+      }
+    }
+  }
+}
+.uploadbox {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  & > .iconA {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 20px;
+    img {
+      width: 100%;
+      height: 100%;
+      vertical-align: top;
+    }
+    & > div {
+      position: absolute;
+      display: none;
+      line-height: 20px;
+      text-align: center;
+      width: 80px;
+      height: 20px;
+      top: 0px;
+      background: rgba(0, 0, 0, 0.5);
+    }
+  }
+  & > .iconA:hover {
+    & > div {
+      display: block;
+    }
+  }
+  img {
+    width: 130px;
+    height: 130px;
+  }
+
+  & > div:hover {
+    & > div {
+      display: block;
+    }
+  }
+  & > div {
+    & > div {
+      position: absolute;
+      display: none;
+      line-height: 130px;
+      text-align: center;
+      width: 130px;
+      height: 130px;
+      top: 0px;
+      background: rgba(0, 0, 0, 0.5);
+    }
+  }
+}
+:global {
+  .ant-upload-list-text {
+    display: none;
+  }
+}
+
+.goodsItemBottom{
+  width: 100%;
+  height: 40px;
+  background: #f3f3f3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &>div{
+    display: flex;
+    align-items: center;
+  }
+
+  .itemBotLeft{
+    :global{
+      input{
+        width: 60px;
+        height: 34px;
+      }
+    }
+      &>div:nth-child(1){
+        width: 60px;
+        height: 40px;
+        background: green;
+        color: #fff;
+        text-align: center;
+        line-height: 40px;
+
+      }
+      &>div:nth-child(2){
+        display: flex;
+        align-items: center;
+        &>div{
+          display: flex;
+          align-items: center;
+          :global{
+            .ant-form-item{
+              margin: 0
+            }
+          }
+        }
+        &>div:nth-child(1){
+          font-size: 18px;
+          color: #333;
+          margin: 0 10px;
+          font-weight: 600;
+        }
+      }
+  }
+  .itemBotRight{
+    :global{
+      input{
+        // width: 120px;
+        height: 34px;
+      }
+    }
+    margin-right: 20px;
+    &>div:first-child{
+      font-size: 18px;
+      color: #333;
+      font-weight: 600;
+    }
+    &>div{
+      display: flex;
+      align-items: center;
+      :global{
+        .ant-form-item{
+          margin: 0
+        }
+      }
+    }
+    &>div:last-child{
+      :global{
+        input{
+          width: 80px;
+          height: 34px;
+        }
+      }
+    }
+  }
+}
+
+.itemThumb{
+  width: 130px;
+  height: 130px;
+}
+.activityMessageOver{
+  margin-left: 30px;
+
+  .overPageMsg{
+    display: flex;
+    align-items: center;
+    &>div{
+      width: 100px;
+      text-align: center;
+    }
+  }
+}
+
+
+

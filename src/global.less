@@ -1,0 +1,112 @@
+@import '~antd/lib/style/themes/default.less';
+
+/* 关于 input select datePicker 相关的样式 */
+// 各种变量
+// 统一右下各 10px 的间距
+@siftMargin: 0 10px 10px 0 !important;
+@middleAlign: top;
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+.colorWeak {
+  filter: invert(80%);
+}
+
+.ant-layout {
+  min-height: 100vh;
+}
+
+canvas {
+  display: block;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.globalSpin {
+  width: 100%;
+  margin: 40px 0 !important;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+.input-sift {
+  width: 200px !important;
+  margin: @siftMargin;
+  vertical-align: @middleAlign;
+}
+// select
+.select-sift {
+  display: inline-block;
+  width: 200px;
+  margin: @siftMargin;
+  vertical-align: @middleAlign;
+}
+
+// datePicker
+.datePicker-sift {
+  width: 130px;
+  margin: @siftMargin;
+  vertical-align: @middleAlign;
+}
+// .rangePicker
+.rangePicker-sift {
+  width: 240px;
+  margin: @siftMargin;
+  vertical-align: @middleAlign;
+}
+
+@media (max-width: @screen-xs) {
+  .ant-table {
+    width: 100%;
+    overflow-x: auto;
+    &-thead > tr,
+    &-tbody > tr {
+      > th,
+      > td {
+        white-space: pre;
+        > span {
+          display: block;
+        }
+      }
+    }
+  }
+}
+.fixedBottom {
+  // padding-left:200px;
+  background: #f0f2f5;
+  height: 80px !important;
+  position: fixed;
+  bottom: 0;
+  left: 256px;
+  width: 1647px;
+  & > div {
+    padding-left: 100px;
+    text-align: left;
+    height: 80px;
+    line-height: 80px;
+    line-height: 80px;
+    width: 100%;
+    margin: 0 auto;
+    background: #fff;
+    :global {
+      .ant-form-item-control-wrapper {
+        height: 80px;
+      }
+      .ant-form-item-control {
+        height: 80px;
+        line-height: 80px;
+        // .ant-btn-primary{margin-left:100px;}
+      }
+    }
+  }
+}
