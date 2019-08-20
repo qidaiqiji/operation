@@ -7,6 +7,10 @@ export async function reqViewActInfo(params) {
   return request(`/operate/activity/view-activity-info?${stringify(params)}`);
 }
 
+export async function reqInfo(params) {
+  return request(`/operate/activity-page/view-info?${stringify(params)}`);
+}
+
 //设置不显示
 export async function reqSubmit(params) {
   return request(`/operate/activity-page/create-info`, {
@@ -16,5 +20,15 @@ export async function reqSubmit(params) {
     },
   });
 }
+
+export async function reqCorrect(params) {
+  return request(`/operate/activity-page/update-info`, {
+    method: 'POST',
+    body: {
+      ...params,
+    },
+  });
+}
+
 
   

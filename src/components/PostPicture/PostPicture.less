@@ -1,0 +1,74 @@
+@siftMargin: 0 10px 10px 0 !important;
+.input-sift {
+    width: 200px;
+    vertical-align: top;
+    margin: @siftMargin;
+  }
+.select-sift {
+    display: inline-block;
+    width: 150PX;
+    vertical-align: top;
+    margin: @siftMargin;
+  }
+  .input-table {
+    width: 150px;
+  }
+  .datePicker-sift {
+    width: 130px;
+    vertical-align:top;
+    margin: @siftMargin;
+  }
+  // .rangePicker
+  .rangePicker-sift {
+    width: 240px;
+    vertical-align:top;
+    margin: @siftMargin;
+  }
+  
+  // 列表居中列
+  .table-col-center {
+    text-align: center;
+  } 
+  .container{
+    width: 100%;
+    max-height: 493px;
+    overflow-y: hidden;
+    .imgBox{
+        width:130px;
+        height: 155px;
+        display: inline-block;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        position: relative;
+        &>img{
+            width: 100%;
+            height: 130px;
+            border: 1px dashed #d6d4d4;
+            border-radius: 4px;
+            padding: 6px;
+        }
+        &>div{
+            position: absolute;bottom:0;
+            width:100%;
+            padding-left:6px;
+            height:25px;
+            line-height: 25px;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+
+        }
+        .active{
+            border: 1px dashed #1890ff;
+        }
+        .selected{
+            width:16px;
+            height: 16px;
+            position: absolute;
+            right: 0;
+            bottom: 30px;
+        }
+        
+    }
+    
+}

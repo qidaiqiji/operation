@@ -17,11 +17,11 @@ class Create extends PureComponent {
     const cardList2 = [
       {
         title: 'A级活动模板',
-        linkUrl: '/pages-management/a-type-model',
+        linkUrl: '/pages-management/create-pages/1',
       },
       {
         title: 'B级活动模板',
-        linkUrl: '',
+        linkUrl: '/pages-management/create-pages/2',
       },
     ];
     const cardList3 = [

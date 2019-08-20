@@ -1,7 +1,7 @@
 import { message, Notification } from 'antd';
 import router from 'umi/router';
 import moment from 'moment';
-import { reqList, reqConfim } from '../services/activityPageList';
+import { reqList, reqConfim, reqConfig } from '../services/activityPageList';
 
 export default {
     namespace: 'activityPageList',
@@ -20,6 +20,10 @@ export default {
         operateTypeText: '',
         operateId: '',
         operateUrl: '',
+        total:0,
+        isOnActMap:{},
+        typeMap:{},
+        loading:false
 
     },
     effects: {
@@ -28,21 +32,28 @@ export default {
                 type: 'updatePageReducer',
                 payload: {
                     ...payload,
+                    loading:true,
                 }
             })
-            const { name, isOnAct, type, startAt, endAt, createTimeStart, createTimeEnd } = yield select(state => state.activityPageList);
-            console.log("111")
+            const { name, isOnAct, type, startAt, endAt, createTimeStart, createTimeEnd, currentPage, pageSize } = yield select(state => state.activityPageList);
             try {
-                const res = yield call(reqList, { name, isOnAct, type, startAt, endAt, createTimeStart, createTimeEnd });
+                const res = yield call(reqList, { name, isOnAct, type, startAt, endAt, createTimeStart, createTimeEnd, currentPage, pageSize });
                 yield put({
                     type: 'updatePageReducer',
                     payload: {
-                        //   activityList:res.data
+                        activityList:res.data.list,
+                        total:res.data.totalCount,
+                        loading:false
                     }
                 })
             } catch (err) {
+                yield put({
+                    type: 'updatePageReducer',
+                    payload: {
+                        loading:false
+                    }
+                })
                 console.log(err)
-
             }
         },
         *getConfig({}, { put, call}) {
@@ -60,14 +71,24 @@ export default {
             }
         },
         *confirmOperate({ payload }, { put, call, select }) {
-            const { operateTypeText, operateId, operateUrl, } = yield select(state => state.activityPageList);
+            const { operateTypeText, operateId, operateUrl } = yield select(state => state.activityPageList);
             try {
-                const res = yield call(reqConfim, operateUrl, { id: operateId });
+                const res = yield call(reqConfim, operateUrl, { pageId: operateId });
                 Notification.success({
                     message: res.msg
                 })
+                yield put({
+                    type:'updatePageReducer',
+                    payload:{
+                        showModal:false
+                    }
+                })
+                yield put({
+                    type:'getList'
+                })
 
             } catch (err) {
+                console.log(err)
 
             }
         }
@@ -92,6 +113,10 @@ export default {
                 operateTypeText: '',
                 operateId: '',
                 operateUrl: '',
+                total:0,
+                isOnActMap:{},
+                typeMap:{},
+                loading:false
 
             };
         },

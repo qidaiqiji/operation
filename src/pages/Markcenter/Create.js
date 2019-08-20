@@ -6,6 +6,7 @@ import icon from '../../../public/icons/icon.png';
 import { Button, Icon, Card, Row, Col, Affix } from 'antd';
 import styles from './index.less';
 const ButtonGroup = Button.Group;
+import CardItem from '@/components/CardItem'
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 class Create extends PureComponent {
   render() {
@@ -126,92 +127,22 @@ class Create extends PureComponent {
           </Row>
         </Affix>
         <Card style={{ margin: '20px 0' }} id="card1">
-          <Row style={{ fontSize: 18, marginBottom: 20 }}>提升客单</Row>
-          <Row>
-            {cardList1.map((item, index) => {
-              return (
-                <Col span={5} style={{ marginRight: 20, marginBottom: 20 }} key={index}>
-                  <Card
-                    title={
-                      <Row type="flex" align="middle">
-                        <img src={icon} />
-                        <span style={{ display: 'inline-block', fontSize: 30, marginLeft: 20 }}>
-                          {item.title}
-                        </span>
-                      </Row>
-                    }
-                    hoverable={true}
-                    className={styles.customCardStyle}
-                  >
-                    <p className={styles.cardContent}>
-                      <Link
-                        to={{
-                          pathname: item.linkUrl,
-                          state: { title: item.title },
-                        }}
-                      >
-                        去创建
-                      </Link>
-                    </p>
-                  </Card>
-                </Col>
-              );
-            })}
-          </Row>
+          <CardItem
+            datasource={cardList1}
+            title="提升客单"
+          />
         </Card>
         <Card style={{ margin: '20px 0' }} id="card2">
-          <Row style={{ fontSize: 18, marginBottom: 20 }}>潜客促活</Row>
-          <Row>
-            {cardList2.map((item, index) => {
-              return (
-                <Col span={5} style={{ marginRight: 20, marginBottom: 20 }} key={index}>
-                  <Card
-                    title={
-                      <Row type="flex" align="middle">
-                        <img src={icon} />
-                        <span style={{ display: 'inline-block', fontSize: 30, marginLeft: 20 }}>
-                          {item.title}
-                        </span>
-                      </Row>
-                    }
-                    hoverable={true}
-                    className={styles.customCardStyle}
-                  >
-                    <p className={styles.cardContent}>
-                      <Link to={item.linkUrl}>去创建</Link>
-                    </p>
-                  </Card>
-                </Col>
-              );
-            })}
-          </Row>
+          <CardItem
+            datasource={cardList2}
+            title="潜客促活"
+          />
         </Card>
         <Card style={{ margin: '20px 0' }} id="card3">
-          <Row style={{ fontSize: 18, marginBottom: 20 }}>互动引流</Row>
-          <Row>
-            {cardList3.map((item, index) => {
-              return (
-                <Col span={5} style={{ marginRight: 20, marginBottom: 20 }} key={index}>
-                  <Card
-                    title={
-                      <Row type="flex" align="middle">
-                        <img src={icon} />
-                        <span style={{ display: 'inline-block', fontSize: 30, marginLeft: 20 }}>
-                          {item.title}
-                        </span>
-                      </Row>
-                    }
-                    hoverable={true}
-                    className={styles.customCardStyle}
-                  >
-                    <p className={styles.cardContent}>
-                      <Link to={item.linkUrl}>去创建</Link>
-                    </p>
-                  </Card>
-                </Col>
-              );
-            })}
-          </Row>
+          <CardItem
+            datasource={cardList3}
+            title="互动引流"
+          />
         </Card>
       </PageHeaderWrapper>
     );

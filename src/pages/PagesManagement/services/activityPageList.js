@@ -6,12 +6,10 @@ export async function reqList(params) {
 }
 
 export async function reqConfig(params) {
-  return request(`/operate/activity-page/view-config?${stringify(params)}`);
+  return request(`/operate/activity-page/config?${stringify(params)}`);
 }
-
-
 export async function reqConfim(url,params) {
-    return request(url, {
+    return request(`/${url}`, {
       method: 'POST',
       body: {
         ...params,

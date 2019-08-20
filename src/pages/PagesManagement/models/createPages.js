@@ -1,31 +1,52 @@
 import { message } from 'antd';
 import router from 'umi/router';
 import moment from 'moment';
-import { reqSubmit } from '../services/createPages';
+import { reqSubmit, reqInfo, reqCorrect } from '../services/createPages';
 
 export default {
     namespace: 'createPages',
 
     state: {
         name: "",
-        onPlatform: '1',
-        remark:"",
-        startAt: moment().format('YYYY-MM-DD-ss'),
-        endAt: moment().format('YYYY-MM-DD-ss')
+        onPlatform: ['onPC','onApplet'],
+        remark: "",
+        startAt: '',
+        endAt: '',
+        pageId: ''
 
     },
     effects: {
-        *submitInfo({ payload }, { put, call, select }) {
-            const { name, onPlatform, remark } = payload;
-            const { startAt, endAt } = yield select(state => state.createPages);
+        *getDetail({ payload }, { put, call, select }) {
             try {
-                const res = yield call(reqSubmit, { name, onPlatform, remark, startAt, endAt });
-                router.push(`/pages-management/a-type-model/${res.data.id}`)
+                const res = yield call(reqInfo, { ...payload })
+                yield put({
+                    type: 'updatePageReducer',
+                    payload: {
+                        ...res.data,
+                        ...payload,
+                    }
+                })
+
             } catch (err) {
 
             }
-        }
 
+        },
+        *submitInfo({ payload }, { put, call, select }) {
+            yield put({
+                type: 'updatePageReducer',
+                payload: {
+                    ...payload
+                }
+            })
+            const { startAt, endAt, pageId, name, onPlatform, remark, copy, edit, type, oldId } = yield select(state => state.createPages);
+            try {
+                const res = yield call(+edit ? reqCorrect : reqSubmit, pageId ? { name, onPlatform, remark, startAt, endAt, type, pageId } : { name, onPlatform, remark, startAt, endAt, type });
+                type==1?router.push(`/pages-management/a-type-model/${type}/${res.data.id}/${edit}/${copy}/${oldId}`):router.push(`/pages-management/b-type-model/${type}/${res.data.id}/${edit}/${copy}/${oldId}`);    
+            } catch (err) {
+                console.log(err)
+            }
+        }
     },
     reducers: {
         updatePageReducer(state, { payload }) {
@@ -37,11 +58,11 @@ export default {
         unmountReducer() {
             return {
                 name: "",
-                onPlatform: '1',
+                onPlatform: ['onPC','onApplet'],
                 remark: "",
-                startAt: "",
-                endAt: ""
-
+                startAt: '',
+                endAt: '',
+                pageId: ''
             };
         },
     }

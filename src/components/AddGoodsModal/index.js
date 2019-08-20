@@ -23,6 +23,13 @@ class AddGoodsModal extends Component {
             selectedRows,
         })
     }
+    handleChangeCurPage=(currentPage)=>{
+        this.props.onSearch({currentPage})
+
+    }
+    handleChangePageSize=(_,pageSize)=>{
+        this.props.onSearch({pageSize})
+    }
     confirmAdd=(selectedRows)=>{
         this.setState({
             selectedRowIds:[],
@@ -43,6 +50,10 @@ class AddGoodsModal extends Component {
             dataSource,
             disabled,
             loading,
+            currentPage,
+            pageSize,
+            total,
+            config
         } = this.props;
         const columns = [
             {
@@ -81,26 +92,26 @@ class AddGoodsModal extends Component {
                 key: 'marketPrice',
                 dataIndex: 'marketPrice',
             },
-            {
-                title: '交叉不冲突的活动',
-                key: 'noConflictList',
-                dataIndex: 'noConflictList',
-                render:(noConflictList)=>{
-                    return noConflictList.map(item=>(
-                        <span>{item}</span>
-                    ))
-                }
-            },
-            {
-                title: '冲突的活动',
-                key: 'conflictList',
-                dataIndex: 'conflictList',
-                render:(conflictList)=>{
-                    return conflictList.map(item=>(
-                        <span>{item}</span>
-                    ))
-                }
-            },
+            // {
+            //     title: '交叉不冲突的活动',
+            //     key: 'noConflictList',
+            //     dataIndex: 'noConflictList',
+            //     render:(noConflictList)=>{
+            //         return noConflictList.map(item=>(
+            //             <span>{item}</span>
+            //         ))
+            //     }
+            // },
+            // {
+            //     title: '冲突的活动',
+            //     key: 'conflictList',
+            //     dataIndex: 'conflictList',
+            //     render:(conflictList)=>{
+            //         return conflictList.map(item=>(
+            //             <span>{item}</span>
+            //         ))
+            //     }
+            // },
         ]
         return <Fragment>
             <Modal
@@ -147,7 +158,13 @@ class AddGoodsModal extends Component {
                     onChange={this.handleSearchItem.bind(this,'status')}
                     allowClear
                     dropdownMatchSelectWidth={false}
-                    />
+                    >
+                        {
+                            Object.keys(config.goodsStatusMap).map(item=>{
+                                return <Select.Option value={item}>{config.goodsStatusMap[item]}</Select.Option>
+                            })
+                        }
+                    </Select>
                     商品分类：
                     <Select
                     placeholder="请选择"
@@ -155,7 +172,13 @@ class AddGoodsModal extends Component {
                     onChange={this.handleSearchItem.bind(this,'catId')}
                     allowClear
                     dropdownMatchSelectWidth={false}
-                    />
+                    >
+                        {
+                            Object.keys(config.categoryMap).map(item=>{
+                                return <Select.Option value={item}>{config.categoryMap[item]}</Select.Option>
+                            })
+                        }
+                    </Select>
                 </Row>
                 <Table
                     loading={loading}
@@ -164,12 +187,12 @@ class AddGoodsModal extends Component {
                     bordered
                     rowKey={row=>row.goodsId}
                     pagination={{
-                        // current: currentPage,
-                        // pageSize,
-                        // total,
-                        // onChange: this.handleChangeCurPage.bind(this),
-                        // onShowSizeChange: this.handleChangePageSize.bind(this),
-                        // showSizeChanger: true,
+                        current: currentPage,
+                        pageSize,
+                        total,
+                        onChange: this.handleChangeCurPage.bind(this),
+                        onShowSizeChange: this.handleChangePageSize.bind(this),
+                        showSizeChanger: true,
                     }}
                     rowSelection={{
                         selectedRowKeys: this.state.selectedRowIds,

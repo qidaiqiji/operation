@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
-import { Card, Row, Input, Button, Form, DatePicker, Radio, Col } from 'antd';
+import { Card, Row, Input, Button, Form, DatePicker, Checkbox , Col } from 'antd';
 const { RangePicker } = DatePicker;
 import moment from 'moment';
 import globalStyles from '@/global.less';
@@ -10,6 +10,31 @@ import PageHeaderWrapper from '@/components/PageHeaderWrapper';
     createPages,
 }))
 class CreatePages extends PureComponent {
+    componentDidMount(){
+        const { dispatch } = this.props;
+        const { type, id, copy, edit } = this.props.match.params;
+        if(id){
+            dispatch({
+                type:'createPages/getDetail',
+                payload:{
+                    pageId:id,
+                    copy,
+                    edit,
+                    type,
+                    oldId:copy?id:0
+                }
+            })
+        }else{
+            dispatch({
+                type:'createPages/updatePageReducer',
+                payload:{
+                    type,
+                    edit:0,
+                    copy:0,
+                }
+            })
+        }
+    }
     componentWillUnmount() {
         const { dispatch } = this.props;
         dispatch({
@@ -34,11 +59,10 @@ class CreatePages extends PureComponent {
         dispatch({
             type:'createPages/updatePageReducer',
             payload:{
-                startAt:dateString[0],
-                endAt:dateString[1],
+                startAt:moment(dateString[0]).format('YYYY-MM-DD HH:mm:ss'),
+                endAt:moment(dateString[1]).format('YYYY-MM-DD HH:mm:ss'),
             }
         })
-
     }
     render() {
         const {
@@ -49,7 +73,6 @@ class CreatePages extends PureComponent {
                 remark, 
                 startAt, 
                 endAt
-
             }
         } = this.props;
         const { getFieldDecorator } = form;
@@ -63,7 +86,7 @@ class CreatePages extends PureComponent {
         }
         return (
             <PageHeaderWrapper
-                title="创建"
+                title="创建基础信息"
             >
                 <Card>
                     <Row><b>基础信息</b></Row>
@@ -74,10 +97,10 @@ class CreatePages extends PureComponent {
                                     {getFieldDecorator('onPlatform', {
                                         initialValue:onPlatform,
                                     })(
-                                        <Radio.Group>
-                                            <Radio value={"1"}>PC端</Radio>
-                                            <Radio value={"2"}>小程序</Radio>
-                                        </Radio.Group>
+                                        <Checkbox.Group>
+                                            <Checkbox value={"onPC"}>PC端</Checkbox >
+                                            <Checkbox value={"onApplet"}>小程序</Checkbox >
+                                        </Checkbox.Group>
                                     )}
                                 </Form.Item>
                             </Col>
@@ -86,6 +109,10 @@ class CreatePages extends PureComponent {
                             {getFieldDecorator('name', {
                                 initialValue:name,
                                 rules: [
+                                    {
+                                        max: 6,
+                                        message: "最多输入6个汉字"
+                                    },
                                     {
                                         required: true,
                                         message: "请输入页面名称"
@@ -97,7 +124,7 @@ class CreatePages extends PureComponent {
                         </Form.Item>
                         <Form.Item label="有效时间" {...formItemLayout}>
                             {getFieldDecorator('date', {
-                                
+                                initialValue:startAt?[moment(startAt), moment(endAt)]:[],
                                 rules: [
                                     {
                                         required: true,
@@ -107,6 +134,7 @@ class CreatePages extends PureComponent {
                             })(
                                 <RangePicker 
                                 format="YYYY-MM-DD HH:mm:ss"
+                                showTime
                                 onChange={this.handleChangeDate}
                                 />
                             )}
@@ -116,8 +144,8 @@ class CreatePages extends PureComponent {
                                 initialValue:remark,
                                 rules: [
                                     {
-                                        required: true,
-                                        message: "请选择有效时间"
+                                        whitespace: true,
+                                        message: "不可输入空格"
                                     }
                                 ]
                             })(
@@ -128,7 +156,7 @@ class CreatePages extends PureComponent {
                         </Form.Item>
                         <div className={globalStyles.fixedBottom}>
                             <Form.Item>
-                                <Button type="primary" htmlType="submit">
+                                <Button type="primary" htmlType="submit" style={{marginLeft:40}}>
                                     下一步
                                 </Button>
                             </Form.Item>

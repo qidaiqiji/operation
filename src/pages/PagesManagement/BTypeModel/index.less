@@ -7,7 +7,7 @@
 }
 .uploadBox{
     float:left;
-    margin-top:15px;
+    // margin-top:15px;
     position: relative;
     &>div{position: absolute;cursor: pointer;
         bottom:5px;width:100%;height:50px;padding-top:5px;
@@ -18,7 +18,7 @@
     }
     :global{
         .ant-upload{
-        margin:0;
+            margin:0;
         }
     }
     
@@ -26,12 +26,13 @@
 .noshow{
     height:104px;
     :global{
-      .ant-upload-text{position:relative;top:-15px;}
-      .ant-upload-list-picture-card .ant-upload-list-item{
-          display: none;
-      }
+        .ant-upload-list-item{
+            display: none;
+        }
+        .ant-upload-list-item-done{
+            display: none;
+        }
     }
-  
   }
 
 .imgBox{
@@ -51,13 +52,33 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    display: inline-block
+    float: left;
+    position: relative;
 }
 .imgBox img{
     width: 100%;
     height: 100%
 }
+.imgBox:hover .imgCover{
+    display: flex
+}
+.imgCover{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: rgba(0,0,0,.5);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    display: none;
+    i{
+        font-size: 20px;
+        color: #fff;
+    }
 
+}
 .btnBox{
     width: 100%;
     height: 100%;
@@ -69,5 +90,12 @@
         justify-content: center;
         align-items: center;
     }
-    
+}
+.imgWrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:220px;
+    float: left;
 }

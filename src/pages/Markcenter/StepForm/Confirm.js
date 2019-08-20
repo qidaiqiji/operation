@@ -76,8 +76,8 @@ class Confirm extends React.Component {
       payload: {},
     });
   }
-  shouldComponentUpdate(nextProps, nextState){
-      return nextProps
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps
   }
   componentWillUnmount() {
     const { dispatch } = this.props;
@@ -226,19 +226,19 @@ class Confirm extends React.Component {
     });
   }
   // addOrUpdate判断是新添加的商品列表还是已参加活动的列表
-  handlePriceChanged(inputName, item,index, e) {
+  handlePriceChanged(inputName, item, index, e) {
 
 
-    const { dispatch,markcenter,form } = this.props;
-    form.resetFields([`[${index}].actPrice`,`[${index}].actPriceReduce`,`[${index}].actPriceDiscount`])
-    const {activeKey } = markcenter
+    const { dispatch, markcenter, form } = this.props;
+    form.resetFields([`[${index}].actPrice`, `[${index}].actPriceReduce`, `[${index}].actPriceDiscount`])
+    const { activeKey } = markcenter
     dispatch({
       type: 'markcenter/changePrice',
       payload: {
         keyName: inputName,
         keyValue: e.target.value,
-        goodsIdChanged:item.goodsId,
-        addOrUpdate:activeKey==1?'add':'update',
+        goodsIdChanged: item.goodsId,
+        addOrUpdate: activeKey == 1 ? 'add' : 'update',
       },
     });
   }
@@ -451,7 +451,7 @@ class Confirm extends React.Component {
     });
 
   }
-  isMainPush(isHot, index) {}
+  isMainPush(isHot, index) { }
 
   handleSubmit(actionType) {
     const {
@@ -512,17 +512,17 @@ class Confirm extends React.Component {
           }
         });
       }
-        if (!err) {
-          dispatch({
-            type: 'markcenter/createActiveGoods',
-            payload: {
-              activityId: id,
-              actionType,
-              addItems,
-              updateItems,
-            },
-          });
-        }
+      if (!err) {
+        dispatch({
+          type: 'markcenter/createActiveGoods',
+          payload: {
+            activityId: id,
+            actionType,
+            addItems,
+            updateItems,
+          },
+        });
+      }
     });
   }
   // handlePublishMiaosha() {
@@ -536,8 +536,8 @@ class Confirm extends React.Component {
   //   });
   // }
   // 确定发布
-  handlePupopTip=()=>{
-    const {dispatch } = this.props;
+  handlePupopTip = () => {
+    const { dispatch } = this.props;
     dispatch({
       type: 'markcenter/getListResolved',
       payload: {
@@ -765,20 +765,20 @@ class Confirm extends React.Component {
                     </div>
                   </div>
                 ) : (
-                  <div
-                    className={styles.itemThumb}
-                    style={{ textAlign: 'center', paddingTop: '20px' }}
-                    onClick={this.uploadImg.bind(
-                      this,
-                      item.goodsId,
-                      'waitforJion',
-                      'isVisibleBannerImgModal'
-                    )}
-                  >
-                    <Icon type="plus" style={{ fontSize: '60px' }} />
-                    <p>上传活动主图</p>
-                  </div>
-                )}
+                    <div
+                      className={styles.itemThumb}
+                      style={{ textAlign: 'center', paddingTop: '20px' }}
+                      onClick={this.uploadImg.bind(
+                        this,
+                        item.goodsId,
+                        'waitforJion',
+                        'isVisibleBannerImgModal'
+                      )}
+                    >
+                      <Icon type="plus" style={{ fontSize: '60px' }} />
+                      <p>上传活动主图</p>
+                    </div>
+                  )}
               </div>
 
               <div>
@@ -814,7 +814,7 @@ class Confirm extends React.Component {
 
                       <Form.Item label="拼团价">
                         {getFieldDecorator(`[${Index}].actPrice`, {
-                          initialValue: item.actPrice?item.actPrice:'',
+                          initialValue: item.actPrice ? item.actPrice : '',
                           rules: [
                             { required: true, message: '输入价格' },
                             { validator: this.handleValidator.bind(this, item.shopPrice) },
@@ -823,38 +823,38 @@ class Confirm extends React.Component {
                       </Form.Item>
                     </div>
                   ) : (
-                    <div>
-                      <Form.Item label="折扣">
-                        {getFieldDecorator(`[${Index}].actPriceDiscount`, {
-                          initialValue: item.actPriceDiscount,
-                          rules: [{ required: true, message: '请填写折扣' },
-                        ],
-                        })(<Input placeholder="0" onChange={this.handlePriceChanged.bind(this,
-                        'actPriceDiscount', item,Index)}/>)}
-                      </Form.Item>
+                      <div>
+                        <Form.Item label="折扣">
+                          {getFieldDecorator(`[${Index}].actPriceDiscount`, {
+                            initialValue: item.actPriceDiscount,
+                            rules: [{ required: true, message: '请填写折扣' },
+                            ],
+                          })(<Input placeholder="0" onChange={this.handlePriceChanged.bind(this,
+                            'actPriceDiscount', item, Index)} />)}
+                        </Form.Item>
 
-                      <Form.Item label="减价">
-                        {getFieldDecorator(`[${Index}].actPriceReduce`, {
-                          initialValue: item.actPriceReduce,
-                          rules: [{ required: true, message: '请填写减价' }],
-                        })(<Input placeholder="0"  onChange={this.handlePriceChanged.bind(this,
-                          'actPriceReduce', item,Index)}/>)}
-                      </Form.Item>
+                        <Form.Item label="减价">
+                          {getFieldDecorator(`[${Index}].actPriceReduce`, {
+                            initialValue: item.actPriceReduce,
+                            rules: [{ required: true, message: '请填写减价' }],
+                          })(<Input placeholder="0" onChange={this.handlePriceChanged.bind(this,
+                            'actPriceReduce', item, Index)} />)}
+                        </Form.Item>
 
-                      <Form.Item label="促销价">
-                        {getFieldDecorator(`[${Index}].actPrice`, {
-                          initialValue: item.actPrice,
-                          rules: [{ required: true, message: '请填写价格' }],
-                        })(<Input placeholder="0"  onChange={this.handlePriceChanged.bind(this,
-                          'actPrice', item,Index)} />)}
-                      </Form.Item>
-                      <Form.Item label="促销数量">
-                        {getFieldDecorator(`[${Index}].matchNum`, {
-                          initialValue: item.matchNum,
-                        })(<Input placeholder="0" />)}
-                      </Form.Item>
-                    </div>
-                  )}
+                        <Form.Item label="促销价">
+                          {getFieldDecorator(`[${Index}].actPrice`, {
+                            initialValue: item.actPrice,
+                            rules: [{ required: true, message: '请填写价格' }],
+                          })(<Input placeholder="0" onChange={this.handlePriceChanged.bind(this,
+                            'actPrice', item, Index)} />)}
+                        </Form.Item>
+                        <Form.Item label="促销数量">
+                          {getFieldDecorator(`[${Index}].matchNum`, {
+                            initialValue: item.matchNum,
+                          })(<Input placeholder="0" />)}
+                        </Form.Item>
+                      </div>
+                    )}
                   <div>
                     <Form.Item label="限购数量">
                       {getFieldDecorator(`[${Index}].limitNum`, {
@@ -927,7 +927,7 @@ class Confirm extends React.Component {
                     onClick={this.changeValues.bind(this, item.isShow, index, 'isShow', activeKey)}
                   >
                     {' '}
-                    { item.isShow ? '设置为不显示' : '设置为显示' }
+                    {item.isShow ? '设置为不显示' : '设置为显示'}
                   </span>
                 )}
               </Form.Item>
@@ -966,8 +966,7 @@ class Confirm extends React.Component {
                     系统随机补
                     <Form.Item>
                       {getFieldDecorator(`[${Index}].supplyNum`, {
-                        initialValue: item.supplyNum ? item.supplyNum : 2,
-                        rules: [{ message: '只能大于1的整数', pattern: /^[2-9]+$/ }],
+                        initialValue: item.supplyNum ? item.supplyNum : 0,
                       })(<Input />)}
                     </Form.Item>
                     个；
@@ -1017,13 +1016,13 @@ class Confirm extends React.Component {
             tabBarExtraContent={
               <div>
                 <Upload
-                  action={type==3?`${getUrl(API_ENV)}/operate/group-shopping/import`:`${getUrl(API_ENV)}/operate/goods-activity/import`}
+                  action={type == 3 ? `${getUrl(API_ENV)}/operate/group-shopping/import` : `${getUrl(API_ENV)}/operate/goods-activity/import`}
                   headers={{
                     authorization: `Basic ${window.btoa(`${localStorage.getItem('token')}:`)}`,
                   }}
                   onChange={this.handleChangeExcelInfoModal.bind(this)}
                   data={{
-                    activityId:this.props.match.params.id
+                    activityId: this.props.match.params.id
                   }}
                 >
                   <Tooltip placement="topRight" title="仅支持条码和促销价导入" arrowPointAtCenter>
@@ -1061,8 +1060,8 @@ class Confirm extends React.Component {
                 </div>
               </TabPane>
             ) : (
-              ''
-            )}
+                ''
+              )}
           </Tabs>
         </Form>
         {/* <Modal
@@ -1202,7 +1201,7 @@ class Confirm extends React.Component {
               selectedRowKeys: selectedRowIds,
               onChange: this.handleSelectRows.bind(this),
               getCheckboxProps: record => ({
-                disabled: [...totalselectedRows, ...hasChosedGoodscopy,...conflictList].some(goodsInfo => {
+                disabled: [...totalselectedRows, ...hasChosedGoodscopy, ...conflictList].some(goodsInfo => {
                   return +record.goodsId === +goodsInfo.goodsId;
                 }),
               }),
