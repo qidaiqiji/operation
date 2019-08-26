@@ -21,7 +21,6 @@ class CreatePages extends PureComponent {
                     copy,
                     edit,
                     type,
-                    oldId:copy?id:0
                 }
             })
         }else{

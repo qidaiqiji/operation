@@ -68,9 +68,9 @@ export default {
     keywords: '',
     status: '',
     catId: '',
-    edit: false,
-    goodsStatusMap: {},
-    categoryMap: {},
+    edit:false,
+    goodsStatusMap:{},
+    categoryMap:{},
   },
   effects: {
     *getDetail({ payload }, { put, call, select }) {
@@ -78,27 +78,20 @@ export default {
         type: 'updatePageReducer',
         payload: {
           ...payload,
-          cardLoading: true,
+          cardLoading:true,
         }
       })
-      const { getDetailId, pageId, copy } = yield select(state => state.bTypeModel);
-      let finalPayload = {};
-      if (copy) {
-        finalPayload = { pageId: getDetailId }
-      } else {
-        finalPayload = { pageId }
-      }
       try {
-        const res = yield call(reqDetail, { ...finalPayload });
+        const res = yield call(reqDetail, { ...payload });
         let pcInfo = res.data.pcInfo;
         let xcxInfo = res.data.xcxInfo;
-        if (!pcInfo) {
-          pcInfo = {}
+        if(!pcInfo) {
+          pcInfo={}
           pcInfo.desc = res.data.name;
           pcInfo.bgColor = '#dd3450';
         }
-        if (!xcxInfo) {
-          xcxInfo = {}
+        if(!xcxInfo) {
+          xcxInfo={}
           xcxInfo.bgColor = '#dd3450';
         }
         let tempPcInfo = pcInfo;
@@ -122,12 +115,12 @@ export default {
         }
         activeKey = onPlatform.length == 2 ? "onPC" : activeKey;
         function checkHasJsonInfo(data) {
-          if (data == []) {
+          if(data == []) {
             data = {}
           }
-          data.isShowTrade = data.isShowTrade ? data.isShowTrade : 0;
-          data.bgType = data.bgType ? data.bgType : 1;
-          if (!data.jsonInfo) {
+          data.isShowTrade=data.isShowTrade?data.isShowTrade:0;
+          data.bgType=data.bgType?data.bgType:1;
+          if(!data.jsonInfo) {
             data.jsonInfo = [];
           }
           let hasGoodsList = data.jsonInfo.some(item => item.type == 1);
@@ -138,7 +131,7 @@ export default {
                 type: 1,
                 goodsList: [],
                 plus: true,
-                isShowTitle: 1,
+                isShowTitle:1,
                 bgColor: "#dd3450",
               },
             )
@@ -149,7 +142,7 @@ export default {
                 type: 2,
                 adList: [],
                 plus: true,
-                isShowTitle: 1,
+                isShowTitle:1,
                 bgColor: "#dd3450",
               }
             )
@@ -161,12 +154,13 @@ export default {
         yield put({
           type: 'updatePageReducer',
           payload: {
+            ...res.data,
             pcInfo: tempPcInfo,
             xcxInfo: tempXcxInfo,
             activeKey,
             showXcx,
             showPc,
-            cardLoading: false,
+            cardLoading:false,
           }
         })
 
@@ -174,23 +168,23 @@ export default {
         yield put({
           type: 'updatePageReducer',
           payload: {
-            cardLoading: false,
+            cardLoading:false,
           }
         })
         console.log(err)
       }
     },
-    *getConfig({ payload }, { put, call, select }) {
-      try {
+    *getConfig({ payload },{ put, call, select }) {
+      try{
         const res = yield call(reqConfig);
         yield put({
-          type: 'updatePageReducer',
-          payload: {
-            goodsStatusMap: res.data.goodsStatusMap,
-            categoryMap: res.data.categoryMap,
+          type:'updatePageReducer',
+          payload:{
+            goodsStatusMap:res.data.goodsStatusMap,
+            categoryMap:res.data.categoryMap,
           }
         })
-      } catch (err) {
+      }catch(err){
         console.log(err)
       }
     },
@@ -242,23 +236,23 @@ export default {
       let temPcInfo = JSON.parse(JSON.stringify(pcInfo));
       let temxcxInfo = JSON.parse(JSON.stringify(xcxInfo));
       function checkIsSelected(data) {
-        if (data == []) {
+        if(data == []) {
           data = {}
         }
-        data.isCheckedGuide = data.isCheckedGuide ? 1 : 0;
-        data.isCheckedBanner = data.isCheckedBanner ? 1 : 0;
+        data.isCheckedGuide = data.isCheckedGuide?1:0;
+        data.isCheckedBanner = data.isCheckedBanner?1:0;
         if (!data.isCheckedBanner) {
           data.banner = "";
           data.bannerLink = "";
-        }
+        } 
         if (!data.isCheckedGuide) {
           data.guideText = "";
           data.articleId = "";
         }
-        data.jsonInfo && data.jsonInfo.map(item => {
-          item.isChecked = item.isChecked ? 1 : 0;
+        data.jsonInfo&&data.jsonInfo.map(item=>{
+          item.isChecked=item.isChecked?1:0;
         })
-        data.jsonInfo = data.jsonInfo && data.jsonInfo.filter(item => {
+        data.jsonInfo = data.jsonInfo&&data.jsonInfo.filter(item => {
           return item.isChecked == 1
         })
         return data;
@@ -266,14 +260,14 @@ export default {
       let pcResult = checkIsSelected(temPcInfo);
       let xcxResult = checkIsSelected(temxcxInfo);
       function getIdList(data) {
-        data.jsonInfo && data.jsonInfo.map(item => {
+        data.jsonInfo&&data.jsonInfo.map(item => {
           if (item.type == 1) {
             item.goodsIdList = [];
             item.goodsList.map(goods => {
               item.goodsIdList.push(goods.goodsId)
             })
           }
-          if (item.titleImg == "") {
+          if(item.titleImg == ""){
             item.titleImg = 0;
           }
           delete item.goodsList
@@ -283,14 +277,14 @@ export default {
       getIdList(pcResult);
       getIdList(xcxResult);
       let finalPayload = {};
-      if (showPc && !showXcx) {
-        finalPayload = { pcInfo: { ...pcResult }, pageId: +pageId, xcxInfo: [] }
-      } else if (!showPc && showXcx) {
-        finalPayload = { pcInfo: [], pageId: +pageId, xcxInfo: { ...xcxResult } }
-      } else {
-        finalPayload = { pcInfo: { ...pcResult }, pageId: +pageId, xcxInfo: { ...xcxResult } }
+      if (showPc&&!showXcx) {
+        finalPayload = { pcInfo: { ...pcResult }, pageId:+pageId, xcxInfo: [] }
+      } else if (!showPc&&showXcx) {
+        finalPayload = { pcInfo: [], pageId:+pageId, xcxInfo: { ...xcxResult } }
+      } else{
+        finalPayload = { pcInfo: { ...pcResult }, pageId:+pageId, xcxInfo: { ...xcxResult } }
       }
-      console.log("finalPayload", finalPayload)
+      console.log("finalPayload",finalPayload)
       if (+edit) {
         try {
           const res = yield call(reqEditSubmit, { ...finalPayload });
@@ -385,9 +379,9 @@ export default {
         keywords: '',
         status: '',
         catId: '',
-        edit: false,
-        goodsStatusMap: {},
-        categoryMap: {},
+        edit:false,
+        goodsStatusMap:{},
+        categoryMap:{},
         // cardLoading:false,
       };
     },

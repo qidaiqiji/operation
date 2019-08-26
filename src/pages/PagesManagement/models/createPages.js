@@ -39,10 +39,10 @@ export default {
                     ...payload
                 }
             })
-            const { startAt, endAt, pageId, name, onPlatform, remark, copy, edit, type, oldId } = yield select(state => state.createPages);
+            const { startAt, endAt, pageId, name, onPlatform, remark, copy, edit, type } = yield select(state => state.createPages);
             try {
                 const res = yield call(+edit ? reqCorrect : reqSubmit, pageId ? { name, onPlatform, remark, startAt, endAt, type, pageId } : { name, onPlatform, remark, startAt, endAt, type });
-                type==1?router.push(`/pages-management/a-type-model/${type}/${res.data.id}/${edit}/${copy}/${oldId}`):router.push(`/pages-management/b-type-model/${type}/${res.data.id}/${edit}/${copy}/${oldId}`);    
+                type==1?router.push(`/pages-management/a-type-model/${type}/${res.data.id}/${edit}/${copy}`):router.push(`/pages-management/b-type-model/${type}/${res.data.id}/${edit}/${copy}`);    
             } catch (err) {
                 console.log(err)
             }

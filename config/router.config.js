@@ -205,6 +205,12 @@ export default [
         icon:'appstore',
         routes:[
           {
+            path: '/pages-management/home-page',
+            name: 'homePage',
+            component: './PagesManagement/HomePage/HomePage',
+            hideInMenu:true,
+          },
+          {
             path: '/pages-management/create-card',
             name: 'createCard',
             component: './PagesManagement/CreateCard/CreateCard',
@@ -222,14 +228,14 @@ export default [
             component: './PagesManagement/CreatePages/CreatePages',
           },
           {
-            path: '/pages-management/a-type-model/:type?/:id?/:edit?/:copy?/:oldId?',
+            path: '/pages-management/a-type-model/:type?/:id?/:edit?/:copy?',
             name: 'aTypeModel',
             hideInMenu:true,
             inherited:true,
             component: './PagesManagement/ATypeModel/ATypeModel',
           },
           {
-            path: '/pages-management/b-type-model/:type?/:id?/:edit?/:copy?/:oldId?',
+            path: '/pages-management/b-type-model/:type?/:id?/:edit?/:copy?',
             name: 'bTypeModel',
             inherited:true,
             hideInMenu:true,

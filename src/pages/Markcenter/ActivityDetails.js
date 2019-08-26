@@ -95,7 +95,6 @@ isShowAddGroup(fullNum,goingNum,actGoodsId){
 }
 // 弹窗改变拼团数
 onChangePinTuanNumb(type,addPinTuanNumb,e){
-  console.log(type,addPinTuanNumb,e)
   const {activityDetails,dispatch} =this.props
   if(type =='reduce'&&addPinTuanNumb ==1){
     return false
@@ -105,9 +104,7 @@ onChangePinTuanNumb(type,addPinTuanNumb,e){
     getNowValue = +addPinTuanNumb>1?+addPinTuanNumb-1:1;
     
   }else if(type == 'add'){
-
     getNowValue =+addPinTuanNumb+1
-    console.log(getNowValue,typeof(addPinTuanNumb))
   }else{
        const { value } = e.target;
    const reg = /^-?(0|[1-9][0-9]*)(\.[0-9]*)?$/;
@@ -117,7 +114,6 @@ onChangePinTuanNumb(type,addPinTuanNumb,e){
 
   }
   }
-  console.log(getNowValue)
   dispatch({
     type: 'activityDetails/getStateResolved',
     payload: {
@@ -173,7 +169,6 @@ handleAddGroupOk=()=>{
     });
   }
   handleChange = (pagination, filters, sorter,currentDataSource,e) => {
-    console.log('Various parameters', pagination, filters, sorter,e);
       const {current,pageSize, } = pagination
       const { dispatch,activityDetails } = this.props;
       const { keywords,activityId,isHot} = activityDetails

@@ -11,7 +11,7 @@ class Create extends PureComponent {
     const cardList1 = [
       {
         title: '页面配置',
-        linkUrl: '',
+        linkUrl: '/pages-management/home-page',
       }
     ];
     const cardList2 = [

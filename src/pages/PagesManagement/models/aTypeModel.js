@@ -2,7 +2,6 @@ import { message } from 'antd';
 import router from 'umi/router';
 import moment from 'moment';
 import { reqList, reqCreateSubmit, reqDetail, reqEditSubmit, reqConfig, reqCouponList, reqActList } from '../services/aTypeModel';
-import { stat } from 'fs';
 export default {
   namespace: 'aTypeModel',
   state: {
@@ -54,15 +53,8 @@ export default {
           cardLoading: true,
         }
       })
-      const { getDetailId, pageId, copy } = yield select(state=>state.aTypeModel);
-      let finalPayload = {};
-      if(copy) {
-        finalPayload={pageId:getDetailId}
-      }else{
-        finalPayload={pageId}
-      }
       try {
-        const res = yield call(reqDetail, { ...finalPayload });
+        const res = yield call(reqDetail, { ...payload });
         let pcInfo = res.data.pcInfo;
         let xcxInfo = res.data.xcxInfo;
         pcInfo.desc = res.data.name;

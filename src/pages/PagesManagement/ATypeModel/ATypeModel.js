@@ -20,16 +20,14 @@ import PostPicture from '@/components/PostPicture';
 class ATypeModel extends PureComponent {
     componentDidMount() {
         const { dispatch } = this.props;
-        const { type, id, copy, edit, oldId } = this.props.match.params;
+        const { type, id, copy, edit } = this.props.match.params;
         dispatch({
             type: 'aTypeModel/getDetail',
             payload: {
                 pageId: id,
                 edit,
                 copy,
-                type,
-                getDetailId:oldId
-                
+                type
             }
         })
         dispatch({
@@ -374,7 +372,6 @@ class ATypeModel extends PureComponent {
                 }else{
                     pcInfo.allGoods.bgColor = e.target.value;
                 }
-                
             }
             dispatch({
                 type: 'aTypeModel/updatePageReducer',
@@ -618,7 +615,7 @@ class ATypeModel extends PureComponent {
     handleConfirmBack = () => {
         const { aTypeModel } = this.props;
         const { pageId, copy, edit, type } = aTypeModel;
-        router.push(`/pages-management/create-pages/${type}/${pageId}/${1}/${0}`)
+        router.push(`/pages-management/create-pages/${type}/${pageId}/${edit}/${copy}`)
     }
     handleSearchList = (type, payload) => {
         const { dispatch } = this.props;

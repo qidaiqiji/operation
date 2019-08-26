@@ -1012,6 +1012,4 @@ function ImgBox({ src, imgType, index, imgIndex, linkKeyWords, initialValue, sho
             </div>
         )}
     </MyContext.Consumer>
-
-
 }

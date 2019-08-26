@@ -54,7 +54,6 @@ const codeMessage = {
 };
 
 const checkResponse = responseJson => {
-  console.log(responseJson,'responseJson')
   if (+responseJson.code === 0) {
     return responseJson;
   }

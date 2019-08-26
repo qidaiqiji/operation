@@ -1,0 +1,174 @@
+.title{
+    font-size: 18px;
+    color: #000;
+    margin: 10px 0;
+}
+.box{
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #e8e8e8;
+    padding: 24px;
+    // border-bottom: none;
+}
+// .box:last-child{
+//     border-bottom:1px solid #e8e8e8;
+// }
+.card{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.cardItem{
+    width: 20%;
+    padding-top: 20px;
+    border: 1px solid #e8e8e8;
+}
+.addGoods{
+    width: 104px;
+    height: 104px;
+    margin-right:8px;
+    margin-bottom: 8px;
+    background-color: #fafafa;
+    border: 1px dashed #d9d9d9;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+    p{
+        width: 100%;
+        height: 100%;
+        margin-bottom: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+.uploadBox{
+    float:left;
+    // margin-top:15px;
+    position: relative;
+    &>div{position: absolute;cursor: pointer;
+        bottom:5px;width:100%;height:50px;padding-top:5px;
+        p{
+        width:90px;margin:0 auto;border:1px solid #ddd;padding:0 2px;border-radius: 4px;
+        background: #fafafa;
+        }
+    }
+    :global{
+        .ant-upload{
+            margin:0;
+        }
+    }
+}
+.btnBox{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    div{
+        height: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+.imgWrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    // width:220px;
+    float: left;
+}
+.imgBox{
+    width: 104px;
+    height: 104px;
+    margin-right:8px;
+    margin-bottom: 8px;
+    text-align: center;
+    vertical-align: top;
+    background-color:#fafafa;
+    border: 1px dashed #d9d9d9;
+    border-radius: 4px;
+    padding: 8px;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    float: left;
+    position: relative;
+}
+.imgBox img{
+    width: 100%;
+    height: 100%
+}
+.imgBox:hover .imgCover{
+    display: flex
+}
+.imgCover{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: rgba(0,0,0,.5);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    display: none;
+    i{
+        font-size: 20px;
+        color: #fff;
+    }
+}
+.container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .staticItem{
+        width: 80px;
+        height: 80px;
+        border: 1px dashed blue;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: blue
+    }
+}
+.staticBox{
+    width: 100px;
+    height: 100px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    .firstStaticBox{
+        width: 80px;
+        height: 80px;
+        border: 1px dashed green;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: green;
+        cursor: pointer;
+    }
+}
+.staticBtn{
+    position: absolute;
+    bottom: 0;
+    left: 5px;
+    display: flex;
+    flex-direction: column;
+}
+.goodsBox{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.goodsItem{
+    width: 33%;
+    border-bottom: 1px dashed #ccc;
+    margin-bottom: 20px;
+}

@@ -18,14 +18,13 @@ import PostPicture from '@/components/PostPicture';
 class BTypeModel extends PureComponent {
     componentDidMount() {
         const { dispatch } = this.props;
-        const { id, copy, edit, oldId } = this.props.match.params;
+        const { id, copy, edit } = this.props.match.params;
         dispatch({
             type: 'bTypeModel/getDetail',
             payload: {
                 pageId: id,
                 edit,
-                copy,
-                getDetailId:oldId
+                copy
             }
         })
         dispatch({
@@ -556,7 +555,7 @@ class BTypeModel extends PureComponent {
     handleConfirmBack=()=>{
         const { bTypeModel } = this.props;
         const { pageId,copy,edit } = bTypeModel;
-        router.push(`/pages-management/create-pages/2/${pageId}/${0}/${0}`)
+        router.push(`/pages-management/create-pages/${pageId}/${edit}/${copy}`)
     }
     handleSearchList=(payload)=>{
         const { dispatch } = this.props;

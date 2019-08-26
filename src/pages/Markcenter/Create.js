@@ -2,9 +2,7 @@ import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'dva';
 import Link from 'umi/link';
-import icon from '../../../public/icons/icon.png';
 import { Button, Icon, Card, Row, Col, Affix } from 'antd';
-import styles from './index.less';
 const ButtonGroup = Button.Group;
 import CardItem from '@/components/CardItem'
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
